@@ -60,4 +60,16 @@ public class OlaMundoJUnitTesting {
         assertThat("Maria", anyOf(is("Maria"), is("João")));
         assertThat("Maria", allOf(startsWith("Ma"), containsString("ri"), endsWith("a")));
     }
+
+    @Test
+    public void devoValidarBody() {
+        given()
+        .when()
+            .get("http://restapi.wcaquino.me/ola")
+        .then()
+            .statusCode(200)
+            .body(is("Ola Mundo!"))
+            .body(containsString("la"))
+            .body(is(not(nullValue())));
+    }
 }
